@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
-import {Input, Button, Link, Gap} from '../../components';
-import { colors, fonts } from '../../utils';
+import {Button, Gap, Input, Link} from '../../components';
+import {colors, fonts} from '../../utils';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.page}>
       <ILLogo />
@@ -13,11 +13,11 @@ const Login = () => {
       <Gap height={26} />
       <Input label="Password" />
       <Gap height={12} />
-      <Link title="Forgot My Password" size={14}/>
-      <Gap height={55} />
-      <Button title="Sign In"/>
-      <Gap height={40} />
-      <Link title="Create New Account" size={20} align="center"/>
+      <Link title="Forgot My Password" size={14} />
+      <Gap height={35} />
+      <Button title="Sign In" onPress={() => navigation.replace('MainApp')} />
+      <Gap height={20} />
+      <Link title="Create New Account" size={18} align="center" />
     </View>
   );
 };

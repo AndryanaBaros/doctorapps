@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
 import {colors} from '../../utils';
-import { NavigationHelpersContext } from '@react-navigation/native';
 
 const Register = ({navigation}) => {
   return (
@@ -17,7 +16,10 @@ const Register = ({navigation}) => {
         <Gap height={24} />
         <Input label="Password" />
         <Gap height={55} />
-        <Button title="Continues" onPress={() => navigation.navigate('UploadPhoto')}/>
+        <Button
+          title="Continues"
+          onPress={() => navigation.navigate('UploadPhoto')}
+        />
         <Gap height={40} />
       </View>
     </View>
