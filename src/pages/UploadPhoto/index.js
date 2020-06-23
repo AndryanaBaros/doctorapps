@@ -6,7 +6,7 @@ import {colors, fonts} from '../../utils';
 
 const UploadPhoto = ({navigation}) => {
   return (
-    <View style={styles.page} >
+    <View style={styles.page}>
       <Header title="Upload Photo" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <View style={styles.profile}>
@@ -14,16 +14,24 @@ const UploadPhoto = ({navigation}) => {
             <Image source={ILNullPhoto} style={styles.avatar} />
             <IconAddPhoto style={styles.addPhoto} />
           </View>
-          <Gap height={26}/>
+          <Gap height={26} />
           <View>
             <Text style={styles.name}>Andryana Baros</Text>
             <Text style={styles.profession}>Skateboarder</Text>
           </View>
         </View>
         <View>
-          <Button title="Upload and Continue" />
+          <Button
+            title="Upload and Continue"
+            onPress={() => navigation.replace('MainApp')}
+          />
           <Gap height={30} />
-          <Link title="Skip for this" align="center" size={20} />
+          <Link
+            title="Skip for this"
+            align="center"
+            size={20}
+            onPress={() => navigation.replace('MainApp')}
+          />
         </View>
       </View>
     </View>

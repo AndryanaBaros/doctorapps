@@ -1,11 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { DummyDoctor1, DummyDoctor2, DummyDoctor3, JsonCategoryDoctor } from '../../assets';
-import { Gap, NewsItem, RatedDoctor } from '../../components';
+import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {
+  DummyDoctor1,
+  DummyDoctor2,
+  DummyDoctor3,
+  JsonCategoryDoctor,
+} from '../../assets';
+import {Gap, NewsItem, RatedDoctor} from '../../components';
 import DoctorCatergory from '../../components/molecules/DoctorCategory';
 import HomeProfile from '../../components/molecules/HomeProfile';
-import { colors, fonts } from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Doctor = ({navigation}) => {
   return (
@@ -13,7 +18,7 @@ const Doctor = ({navigation}) => {
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Gap height={30} />
-          <HomeProfile />
+          <HomeProfile onPress={() => navigation.navigate('UserProfile')}/>
           <Text style={styles.welcome}>
             Mau konsulaltasi dengan siapa hari ini?
           </Text>
@@ -39,6 +44,7 @@ const Doctor = ({navigation}) => {
             name="Nadhira Balqis"
             profession="Psikiater"
             pic={DummyDoctor1}
+            onPress={() => navigation.navigate('DoctorProfile')}
           />
           <RatedDoctor
             name="Putra Ganzih Fadilla"

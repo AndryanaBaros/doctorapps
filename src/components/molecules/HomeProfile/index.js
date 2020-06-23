@@ -1,18 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {DummyUser} from '../../../assets';
-import {fonts, colors} from '../../../utils';
-import {color} from 'react-native-reanimated';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { DummyUser } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
-const HomeProfile = () => {
+const HomeProfile = ({onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={DummyUser} style={styles.avatar} />
       <View>
         <Text style={styles.name}>Andryana Baros</Text>
         <Text style={styles.profession}> Skateboarder</Text>
       </View> 
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 46,
     height: 46,
-    borderBottomEndRadius: 46 / 2,
+    borderRadius: 46 / 2,
     marginRight: 12,
   },
   name: {

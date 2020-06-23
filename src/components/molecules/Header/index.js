@@ -4,8 +4,12 @@ import {IconBackDark} from '../../../assets';
 import {Gap, Button} from '../../atoms';
 import {colors, fonts} from '../../../utils';
 import {color} from 'react-native-reanimated';
+import DarkProfile from './DarkProfile';
 
 const Header = ({onPress, title, type}) => {
+  if (type === 'dark-profile'){
+    return <DarkProfile/>
+  }
   return (
     <View style={styles.container(type)}>
       <Button

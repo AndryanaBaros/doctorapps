@@ -14,6 +14,12 @@ import IconDoctorAnak from  './ic-doctor-anak.svg';
 import IconStar from './ic-star.svg';
 import IconChevron from './chevron-.svg';
 import IconBackLight from './back-light.svg';
+import IconSendActive from './ic-send-active.svg';
+import IconSend from './ic-send.svg';
+import IconProfile from './ic-account.svg';
+import IconTranslate from './ic-translate.svg';
+import IconStarProfile from './ic-star-profile.svg';
+import IconHelp from './ic-description.svg';
 
 export {
   IconBackDark,
@@ -32,4 +38,10 @@ export {
   IconStar,
   IconChevron,
   IconBackLight,
+  IconSend,
+  IconSendActive,
+  IconProfile,
+  IconTranslate,
+  IconStarProfile,
+  IconHelp,
 };

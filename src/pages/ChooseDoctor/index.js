@@ -1,41 +1,44 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
+  DummyDoctor1,
   DummyDoctor4,
   DummyDoctor5,
-  DummyDoctor6,
   DummyDoctor7,
   DummyDoctor8,
-  DummyDoctor1,
 } from '../../assets';
-import {Header, LisDoctor} from '../../components';
+import {Header, ListDoctor} from '../../components';
 import {colors} from '../../utils';
 
 const ChooseDoctor = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header type="dark" title="Pilih Dokter Anak" onPress={() => navigation.goBack()}/>
-      <LisDoctor
+      <Header
+        type="dark"
+        title="Pilih Dokter Anak"
+        onPress={() => navigation.goBack()}
+      />
+      <ListDoctor
         type="next"
         profile={DummyDoctor4}
         name="Ana Hafidho"
         desc="Wanita"
         onPress={() => navigation.navigate('Chatting')}
       />
-      <LisDoctor
+      <ListDoctor
         type="next"
         profile={DummyDoctor5}
         name="Francisca Cindy"
         desc="Wanita"
       />
-      <LisDoctor
+      <ListDoctor
         type="next"
         profile={DummyDoctor1}
         name="Yulianti"
         desc="Wanita"
       />
-      <LisDoctor type="next" profile={DummyDoctor7} name="Baros" desc="Pria" />
-      <LisDoctor
+      <ListDoctor type="next" profile={DummyDoctor7} name="Baros" desc="Pria" />
+      <ListDoctor
         type="next"
         profile={DummyDoctor8}
         name="Amel Mawaddah"

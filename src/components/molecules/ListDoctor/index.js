@@ -1,13 +1,34 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {IconChevron} from '../../../assets';
+import {
+  IconChevron,
+  IconProfile,
+  IconTranslate,
+  IconStarProfile,
+  IconHelp,
+} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const ListDoctor = ({profile, name, desc, type, onPress}) => {
+const ListDoctor = ({profile, name, desc, type, onPress, icon}) => {
+  const Icon = () => {
+    if (icon == 'edit-profile') {
+      return <IconProfile />;
+    }
+    if (icon == 'language') {
+      return <IconTranslate />;
+    }
+    if (icon == 'rate') {
+      return <IconStarProfile />;
+    }
+    if (icon == 'help') {
+      return <IconHelp />;
+    }
+    return <IconProfile />;
+  };
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={profile} style={styles.avatar} />
+      {icon ? <Icon /> : <Image source={profile} style={styles.avatar} />}
       <View style={styles.content}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.chat}>{desc}</Text>
@@ -28,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  content: {flex: 1,},
+  content: {flex: 1, marginLeft: 16,},
   avatar: {width: 48, height: 48, borderRadius: 48 / 2, marginRight: 12},
   name: {
     fontSize: 18,
