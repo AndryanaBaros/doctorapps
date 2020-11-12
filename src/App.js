@@ -1,21 +1,33 @@
-// import Splash from './pages/Splash'
-// import {Splash, GetStarted} from './pages';
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useState} from 'react';
 import Router from './router';
-import FlashMessage from "react-native-flash-message";
-import { Loading } from './components';
+import FlashMessage from 'react-native-flash-message';
+import {Loading} from './components';
+import {Provider, useSelector} from 'react-redux';
+import store from './redux/store';
+import {YellowBox} from 'react-native';
 
-const App = () => {
+const MainApp = () => {
+  const stateGlobal = useSelector(state => state);
+  YellowBox.ignoreWarnings(['Setting a timer', 'Using an unspecified index']);
+
   return (
     <>
-    <NavigationContainer>
+      <NavigationContainer>
         <Router />
-    </NavigationContainer>
-    <FlashMessage position="top" />
+      </NavigationContainer>
+      <FlashMessage position="top" />
+      {stateGlobal.loading && <Loading />}
     </>
   );
 };
 
-export default App
+const App = () => {
+  return (
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
+  );
+};
 
+export default App;

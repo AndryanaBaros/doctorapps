@@ -1,14 +1,45 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import Profile from '../../components/molecules/Profile';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {ILNullPhoto} from '../../assets';
 import {Header, ListDoctor} from '../../components';
-import {colors} from '../../utils';
+import Profile from '../../components/molecules/Profile';
+import {Fire} from '../../config';
+import {colors, getData, showError} from '../../utils';
 
 const UserProfile = ({navigation}) => {
+  const [profile, setProfile] = useState({
+    fullname: '',
+    profession: '',
+    photo: ILNullPhoto,
+  });
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  }, []);
+
+  const signOut = () => {
+    Fire.auth()
+      .signOut()
+      .then(() => {
+        navigation.replace('GetStarted');
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  };
   return (
     <View style={styles.container}>
-      <Header title="Profile" onPress={() => navigation.goBack()}/>
-      <Profile name="Andryna Baros" desc="Skateboarder" />
+      <Header title="Profile" onPress={() => navigation.goBack()} />
+      {profile.fullname.length > 0 && (
+        <Profile
+          name={profile.fullname}
+          desc={profile.profession}
+          photo={profile.photo}
+        />
+      )}
       <View style={styles.desc}>
         <ListDoctor
           name="Edit Profile"
@@ -18,22 +49,23 @@ const UserProfile = ({navigation}) => {
           onPress={() => navigation.navigate('UpdateProfile')}
         />
         <ListDoctor
-          name="Edit Profile"
+          name="Language"
           desc="Last Update Yesterday"
           type="next"
           icon="language"
         />
         <ListDoctor
-          name="Edit Profile"
+          name="Give Us Rate"
           desc="Last Update Yesterday"
           type="next"
           icon="rate"
         />
         <ListDoctor
-          name="Edit Profile"
+          name="Sign Out"
           desc="Last Update Yesterday"
           type="next"
           icon="help"
+          onPress={signOut}
         />
       </View>
     </View>

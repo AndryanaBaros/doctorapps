@@ -1,14 +1,24 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {color} from 'react-native-reanimated';
 import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 
-const InputChat = () => {
+const InputChat = ({value, onChangeText, onButtonPress}) => {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="tulis pesan untuk balqis" />
-      <Button type="btn-icon-send" />
+      <TextInput
+        style={styles.input}
+        placeholder="tulis pesan untuk balqis"
+        value={value}
+        onChangeText={onChangeText}
+      />
+      <Button
+        disable={value.length < 1}
+        type="btn-icon-send"
+        onPress={onButtonPress}
+      />
     </View>
   );
 };
@@ -26,5 +36,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     maxHeight: 45,
   },
-  container: {padding: 16, flexDirection: 'row'},
+  container: {padding: 16, flexDirection: 'row', backgroundColor: colors.white},
 });

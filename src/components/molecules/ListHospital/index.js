@@ -3,10 +3,10 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {ILHospitals1} from '../../../assets';
 import {fonts, colors} from '../../../utils';
 
-const ListHospital = ({title, address, pic}) => {
+const ListHospital = ({title, address, image }) => {
   return (
     <View style={styles.page}>
-      <Image source={pic} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
       <View />
       <View>
   <Text style={styles.title}>{title}</Text>

@@ -2,14 +2,22 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DummyUser, IconRemovePhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const Profile = ({name, desc, remove, pic}) => {
+const Profile = ({name, desc, remove, photo, onPress}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.borderProfile}>
-        <Image source={DummyUser} style={styles.avatar} />
-        {remove && <IconRemovePhoto style={styles.iconRemove} />}
-      </View>
+      {!remove && (
+        <View style={styles.borderProfile}>
+          <Image source={photo} style={styles.avatar} />
+        </View>
+      )}
+      {remove && (
+        <TouchableOpacity style={styles.borderProfile} onPress={onPress}>
+          <Image source={photo} style={styles.avatar} />
+          {remove && <IconRemovePhoto style={styles.iconRemove} />}
+        </TouchableOpacity>
+      )}
       {name && (
         <View>
           <Text style={styles.name}>{name}</Text>

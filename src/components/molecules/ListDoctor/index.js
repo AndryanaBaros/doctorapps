@@ -49,16 +49,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  content: {flex: 1, marginLeft: 16,},
+  content: {flex: 1, marginLeft: 16},
   avatar: {width: 48, height: 48, borderRadius: 48 / 2, marginRight: 12},
   name: {
     fontSize: 18,
     fontFamily: fonts.primary.normal,
+    textTransform: 'capitalize',
     color: colors.text.primary,
   },
   chat: {
     fontSize: 14,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
+    textTransform: 'capitalize',
   },
 });

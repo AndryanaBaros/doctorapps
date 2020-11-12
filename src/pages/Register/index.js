@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Fire} from '../../config';
-import {colors, useForm} from '../../utils';
-import { showMessage, hideMessage } from "react-native-flash-message";
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { color } from 'react-native-reanimated';
-// import {YellowBox} from 'react-native';
-// YellowBox.ignoreWarnings(['Warning: ...']);
+import {colors, getData, showError, storeData, useForm} from '../../utils';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -21,28 +16,34 @@ const Register = ({navigation}) => {
   const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
-    console.log(form);
+    getData('user').then(res => {});
+    storeData('user', form);
     setLoading(true);
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
-      .then(succes => {
+      .then(success => {
         setLoading(false);
         setForm('reset');
-        console.log('register succes: ', succes);
+
+        const data = {
+          fullname: form.fullname,
+          profession: form.profession,
+          email: form.email,
+          uid: success.user.uid,
+        };
+
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
       })
       .catch(error => {
         const errorMessage = error.message;
         setLoading(false);
-        showMessage({
-          message: errorMessage,
-          type: 'danger',
-          backgroundColor: colors.warning,
-          color: colors.white,
-        });
-        console.log('error: ', error);
-        // ...
+        showError(err.message);
       });
-    // navigation.navigate('UploadPhoto');
   };
   return (
     <>

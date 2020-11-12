@@ -1,9 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
-import {ILLogo} from '../../assets';
-import {Button} from '../../components';
-import {ILGetStarted} from '../../assets';
-import {NavigationContainer} from '@react-navigation/native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ILGetStarted, ILLogo } from '../../assets';
+import { Button } from '../../components';
 import { colors, fonts } from '../../utils';
 
 const GetStarted = ({navigation}) => {
@@ -26,7 +24,7 @@ const GetStarted = ({navigation}) => {
           title="Sign In"
           onPress={() => navigation.navigate('Login')}
         />
-      </View>
+      </View >
     </ImageBackground>
   );
 };
@@ -47,5 +45,4 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: fonts.primary[600],
   },
-  backgroundImage: {},
 });

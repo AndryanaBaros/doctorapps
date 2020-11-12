@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^7.3.0",
     "@react-navigation/bottom-tabs": "^5.5.2",
@@ -18,14 +19,18 @@
     "css-select": "^2.1.0",
     "css-tree": "^1.0.0-alpha.39",
     "firebase": "^7.15.4",
+    "install": "^0.13.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-flash-message": "^0.1.15",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-image-picker": "^2.3.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.9.0",
-    "react-native-svg": "^12.1.0"
+    "react-native-svg": "^12.1.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
@@ -34,6 +39,7 @@
     "babel-jest": "24.9.0",
     "eslint": "6.8.0",
     "jest": "24.9.0",
+    "jetifier": "^1.6.6",
     "metro-react-native-babel-preset": "0.58.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "16.11.0"

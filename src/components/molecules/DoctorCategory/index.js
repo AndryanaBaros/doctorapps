@@ -34,13 +34,23 @@ export default DoctorCategory;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 12,
+    padding: 10,
     backgroundColor: colors.cardColor,
     alignSelf: 'flex-start',
     borderRadius: 10,
     marginRight: 10,
-    width: 100,
+    marginBottom: 10,
+    width: 106,
     height: 130,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+
+    elevation: 6,
   },
   illustration: {marginBottom: 28},
   label: {

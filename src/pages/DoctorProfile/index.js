@@ -4,17 +4,28 @@ import {Button, Gap, Header, ProfileItem} from '../../components';
 import Profile from '../../components/molecules/Profile';
 import {colors} from '../../utils';
 
-const DoctorProfile = ({navigation}) => {
+const DoctorProfile = ({navigation, route}) => {
+  const dataDoctor = route.params;
   return (
     <View style={styles.page}>
-      <Header title="Doctor Profile" onPress={() => navigation.goBack()}/>
-      <Profile name="Nadhira Balqis" desc="Dokter Anak" remove />
+      <Header title="Doctor Profile" onPress={() => navigation.goBack()} />
+      <Profile
+        name={dataDoctor.data.fullName}
+        desc={dataDoctor.data.profession}
+        photo={{uri: dataDoctor.data.photo}}
+      />
       <Gap height={10} />
-      <ProfileItem name="Alumnus" desc="Universitas Indonesia" />
-      <ProfileItem name="Tempat Praktik" desc="Rumah Sakit Ananda Bekasi" />
-      <ProfileItem name="No.STR" desc="0123456789" />
+      <ProfileItem name="Alumnus" desc={dataDoctor.data.university} />
+      <ProfileItem
+        name="Tempat Praktik"
+        desc={dataDoctor.data.hospital_address}
+      />
+      <ProfileItem name="No.STR" desc={dataDoctor.data.str_number} />
       <View style={styles.btn}>
-        <Button title="Start Consultation" onPress={()=> navigation.navigate('Chatting')}/>
+        <Button
+          title="Start Consultation"
+          onPress={() => navigation.navigate('Chatting', dataDoctor)}
+        />
       </View>
     </View>
   );

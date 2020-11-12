@@ -6,9 +6,11 @@ import {colors, fonts} from '../../../utils';
 import {color} from 'react-native-reanimated';
 import DarkProfile from './DarkProfile';
 
-const Header = ({onPress, title, type}) => {
-  if (type === 'dark-profile'){
-    return <DarkProfile/>
+const Header = ({onPress, title, type, desc, photo}) => {
+  if (type === 'dark-profile') {
+    return (
+      <DarkProfile onPress={onPress} title={title} desc={desc} photo={photo} />
+    );
   }
   return (
     <View style={styles.container(type)}>
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomLeftRadius: type === 'dark' ? 20 : 0,
     borderBottomRightRadius: type === 'dark' ? 20 : 0,
-    
   }),
   text: type => ({
     textAlign: 'center',
@@ -42,5 +43,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: fonts.primary[600],
     color: type === 'dark' ? colors.white : colors.text.primary,
+    textTransform: 'capitalize',
   }),
 });
