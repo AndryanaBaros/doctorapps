@@ -61,6 +61,18 @@ const Chatting = ({navigation, route}) => {
     const today = new Date();
     const chatID = `${user.uid}_${dataDoctor.data.uid}`;
     const urlFirebase = `chatting/${chatID}/allchat/${setDateChat(today)}`;
+    const urlMessageUser = `message/${user.uid}/${chatID}`;
+    const urlMessageDoctor = `message/${dataDoctor.data.uid}/${chatID}`;
+    const dataHistoryChatForUser = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: dataDoctor.data.uid,
+    };
+    const dataHistoryChatForDoctor = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: user.uid,
+    };
     const data = {
       sendBy: user.uid,
       chatDate: new Date().getTime(),
@@ -71,8 +83,15 @@ const Chatting = ({navigation, route}) => {
     Fire.database()
       .ref(urlFirebase)
       .push(data)
-      .then(res => {
+      .then(() => {
         setChatContent('');
+        Fire.database()
+          .ref(urlMessageUser)
+          .set(dataHistoryChatForUser);
+
+        Fire.database()
+          .ref(urlMessageDoctor)
+          .set(dataHistoryChatForDoctor);
       })
       .catch(err => {
         showError(err.message);

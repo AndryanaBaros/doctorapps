@@ -1,42 +1,51 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ListProfile, ListDoctor} from '../../components';
-import {colors, fonts} from '../../utils';
-import {DummyDoctor1, DummyDoctor2, DummyDoctor3} from '../../assets';
+import {ListDoctor} from '../../components';
+import {colors, fonts, getData} from '../../utils';
+import {Fire} from '../../config';
 
 const Messages = ({navigation}) => {
-  const [doctors] = useState([
-    {
-      id: 1,
-      profile: DummyDoctor1,
-      name: 'Nadhira Balis',
-      desc: 'Baik bu,terimakasih banyak atas wak...',
-    },
-    {
-      id: 2,
-      profile: DummyDoctor2,
-      name: 'Putra Ganzih Fadilah',
-      desc: 'Baik bu,terimakasih banyak atas wak...',
-    },
-    {
-      id: 3,
-      profile: DummyDoctor3,
-      name: 'Susiana',
-      desc: 'Baik bu,terimakasih banyak atas wak...',
-    },
-  ]);
+  const [user, setUser] = useState({});
+  const [historyChat, setHistoryChat] = useState({});
+
+  useEffect(() => {
+    getDataUserFromLocal();
+    const urlHistory = `message/${user.uid}/`;
+    Fire.database()
+      .ref(urlHistory)
+      .on('value', snapshot => {
+        console.log('data harigato: ', snapshot.val());
+        if (snapshot.val()) {
+          const oldData = snapshot.val();
+          const data = [];
+          Object.keys(oldData).map(key => {
+            data.push({
+              id: key,
+              ...oldData[key],
+            });
+          });
+          console.log('new data history: ', data);
+          setHistoryChat(data);
+        }
+      });
+  }, [user.uid]);
+  const getDataUserFromLocal = () => {
+    getData('user').then(res => {
+      setUser(res);
+    });
+  };
 
   return (
     <View style={styles.page}>
       <View style={styles.content}>
         <Text style={styles.title}>Messages</Text>
-        {doctors.map(doctor => {
+        {historyChat.map(chat => {
           return (
             <ListDoctor
-              key={doctor.id}
-              profile={doctor.profile}
-              name={doctor.name}
-              desc={doctor.desc}
+              key={chat.id}
+              profile={chat.uidPartner}
+              name={chat.uidPartner}
+              desc={chat.lastContentChat}
               onPress={() => navigation.navigate('Chatting')}
             />
           );
